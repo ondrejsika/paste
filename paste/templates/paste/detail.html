@@ -1,0 +1,10 @@
+{% extends "base.html"%}
+{% block content %}
+<h2>#{{paste.id}} {{paste.name}}</h2>
+<p>{{paste.timestamp}}</p>
+<p>{{paste.description|linebreaksbr}}</p>
+
+<code><pre>
+{{paste.content|linebreaksbr}}
+</pre></code>
+{% endblock content %}

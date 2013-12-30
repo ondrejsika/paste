@@ -1,0 +1,19 @@
+{% extends "base.html"%}
+{% block content %}
+<table>
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>timestamp</td>
+    </tr>
+    {% for paste in pastes %}
+        <tr>
+            <td><a href="{% url "paste:detail" paste.pk %}">#{{paste.pk}}</a></td>
+            <td>
+                {{paste.name}}
+            </td>
+            <td>{{paste.timestamp}}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

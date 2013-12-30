@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Paste</title>
+    </head>
+    <body>
+        {% block base_content %}
+            <h1>Paste</h1>
+            <p><a href="/">list</a> <a href="{% url "paste:add" %}">add</a></p>
+            {% block content %}
+            {% endblock content %}
+        {% endblock base_content %}
+        <hr>
+        <p>Paste, source on <a href="http://github.com/ondrejsika/paste" target="_blank">GitHub</a> by <a href="http://ondrejsika.com" target="_blank">Ondrej Sika</a></p>
+    </body>
+</html>
