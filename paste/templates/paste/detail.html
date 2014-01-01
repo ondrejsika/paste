@@ -2,6 +2,7 @@
 {% block content %}
 <h2>{{paste}}</h2>
 <p>{{paste.timestamp}}</p>
+<p><a href="{% url "paste:raw" paste.pk %}" target="_blank">raw</a></p>
 <p>{{paste.description|linebreaksbr}}</p>
 
 <pre><code>{{paste.content}}</code></pre>

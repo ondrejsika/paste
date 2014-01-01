@@ -39,3 +39,8 @@ def detail_view(request, paste_pk, template="paste/detail.html"):
             "paste": paste,
         },
         context_instance=RequestContext(request))
+
+def raw_view(request, paste_pk):
+    paste = get_object_or_404(Paste, pk=paste_pk, deleted=False)
+
+    return HttpResponse(paste.content, content_type="text/plain")
