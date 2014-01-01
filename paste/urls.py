@@ -14,6 +14,10 @@ urlpatterns = patterns('',
     url(r'^paste/(?P<paste_pk>[-\w\d]+)/delete/$', delete_view, name="delete", ),
     url(r'^paste/(?P<paste_pk>[-\w\d]+)/delete-process/$', delete_process, name="delete_process", ),
 
+    url(r'^settings/$', settings_view, name="settings", ),
+    url(r'^change-password/$', change_password_view, name="change_password", ),
+    url(r'^change-password/done/$', TemplateView.as_view(template_name="paste/change_password_done.html"), name="change_password_done", ),
+
     url(r'^login/$', login_view, name="login", ),
     url(r'^logout/$', logout_view, name="logout", ),
 )

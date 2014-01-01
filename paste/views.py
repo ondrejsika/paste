@@ -6,6 +6,7 @@ from django.template import RequestContext
 from django.core.urlresolvers import reverse
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 
 from .models import Paste
 from .forms import PasteForm
@@ -100,3 +101,22 @@ def delete_process(request, paste_pk):
     paste.deleted = True
     paste.save()
     return HttpResponseRedirect(request.GET.get("next", "/"))
+
+@login_required
+def settings_view(request, template="paste/settings.html"):
+    return render_to_response(template,
+        {
+        },
+        context_instance=RequestContext(request))
+
+@login_required
+def change_password_view(request, template="paste/change_password.html"):
+    change_password_form = PasswordChangeForm(data=request.POST or None, user=request.user)
+    if change_password_form.is_valid():
+        change_password_form.save()
+        return HttpResponseRedirect(reverse("paste:change_password_done"))
+    return render_to_response(template,
+        {
+            "change_password_form": change_password_form,
+        },
+        context_instance=RequestContext(request))
