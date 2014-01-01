@@ -26,12 +26,12 @@
                 <a href="{% url "paste:raw" paste.pk %}" target="_blank">raw</a>
             </td>
             <td>
-                {% if paste.owner == request.user.profile %}
+                {% if request.user.profile and paste.owner == request.user.profile %}
                     <a href="{% url "paste:edit" paste.pk %}">edit</a>
                 {% endif %}
             </td>
             <td>
-                {% if paste.owner == request.user.profile  %}
+                {% if request.user.profile and paste.owner == request.user.profile  %}
                     <a href="{% url "paste:delete" paste.pk %}">delete</a>
                 {% endif %}
             </td>

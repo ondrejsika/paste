@@ -9,7 +9,7 @@
 </p>
 <p>
     <a href="{% url "paste:raw" paste.pk %}" target="_blank">raw</a>
-    {% if paste.owner == request.user.profile %}
+    {% if request.user.profile and paste.owner == request.user.profile %}
     	<a href="{% url "paste:edit" paste.pk %}">edit</a>
     	<a href="{% url "paste:delete" paste.pk %}">delete</a>
     {% endif %}
