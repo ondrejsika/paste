@@ -17,7 +17,19 @@ def index_view(request, template="paste/index.html"):
 
     return render_to_response(template,
         {
-            "title": "Index",
+            "title": "All pastes",
+
+            "pastes": pastes,
+        },
+        context_instance=RequestContext(request))
+
+@login_required
+def index_my_view(request, template="paste/index.html"):
+    pastes = Paste.objects.active().filter(owner=request.user.profile)
+
+    return render_to_response(template,
+        {
+            "title": "My pastes",
 
             "pastes": pastes,
         },
@@ -27,7 +39,7 @@ def add_view(request, template="paste/add.html"):
     add_paste_form = PasteForm(request.POST or None)
     if add_paste_form.is_valid():
         paste = add_paste_form.save(commit=False)
-        if request.user:
+        if request.user.is_authenticated():
             paste.owner = request.user.profile
         paste.save()
         return HttpResponseRedirect(reverse("paste:detail", args=(paste.pk, )))

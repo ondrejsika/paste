@@ -11,7 +11,8 @@
         {% block base_content %}
             <h1>Paste</h1>
             <p>
-                <a href="/">list</a>
+                <a href="/">all</a>
+                <a href="{% url "paste:index_my" %}">my</a>
                 <a href="{% url "paste:add" %}">add</a>
                 |
                 {% if request.user.is_authenticated %}

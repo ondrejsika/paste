@@ -7,6 +7,7 @@ from .views import *
 
 urlpatterns = patterns('',
     url(r'^$', index_view, name="index", ),
+    url(r'^my/$', index_my_view, name="index_my", ),
     url(r'^add/$', add_view, name="add", ),
     url(r'^paste/(?P<paste_pk>[-\w\d]+)/$', detail_view, name="detail", ),
     url(r'^paste/raw/(?P<paste_pk>[-\w\d]+)/$', raw_view, name="raw", ),
