@@ -4,7 +4,9 @@
 <p>{{paste.timestamp}}</p>
 <p>{{paste.description|linebreaksbr}}</p>
 
-<code><pre>
-{{paste.content|linebreaksbr}}
-</pre></code>
+<pre><code>{{paste.content}}</code></pre>
+
+<script type="text/javascript">
+hljs.initHighlightingOnLoad()
+</script>
 {% endblock content %}
