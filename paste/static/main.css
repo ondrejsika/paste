@@ -3,6 +3,10 @@
   margin: 2px;
 }
 
+code, pre {
+	font-family: monospace;
+}
+
 hr {
   background-color: black;
   border: none;
