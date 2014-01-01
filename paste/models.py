@@ -2,8 +2,11 @@ from django.db import models
 
 
 class BaseManager(models.Manager):
+    def all(self):
+        return super(BaseManager, self).all().order_by("-pk")
+
     def active(self):
-        return self.filter(deleted=False)
+        return self.all().filter(deleted=False)
 
 class BaseModel(models.Model):
     deleted = models.BooleanField(default=False)
