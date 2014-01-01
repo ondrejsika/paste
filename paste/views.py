@@ -17,6 +17,8 @@ def index_view(request, template="paste/index.html"):
 
     return render_to_response(template,
         {
+            "title": "Index",
+
             "pastes": pastes,
         },
         context_instance=RequestContext(request))
@@ -32,6 +34,8 @@ def add_view(request, template="paste/add.html"):
 
     return render_to_response(template,
         {
+            "title": "Add paste",
+
             "add_paste_form": add_paste_form,
         },
         context_instance=RequestContext(request))
@@ -49,6 +53,7 @@ def edit_view(request, paste_pk, template="paste/edit.html"):
 
     return render_to_response(template,
         {
+            "title": "%s / edit" % paste,
             "paste": paste,
 
             "edit_paste_form": edit_paste_form,
@@ -66,6 +71,7 @@ def detail_view(request, paste_pk, template="paste/detail.html"):
 
     return render_to_response(template,
         {
+            "title": paste,
             "paste": paste,
         },
         context_instance=RequestContext(request))
@@ -88,6 +94,7 @@ def delete_view(request, paste_pk, template="paste/delete.html"):
 
     return render_to_response(template,
     {
+        "title": "%s / delete" % paste,
         "paste": paste,
     },
     context_instance=RequestContext(request))
@@ -106,6 +113,7 @@ def delete_process(request, paste_pk):
 def settings_view(request, template="paste/settings.html"):
     return render_to_response(template,
         {
+            "title": "Settings",
         },
         context_instance=RequestContext(request))
 
