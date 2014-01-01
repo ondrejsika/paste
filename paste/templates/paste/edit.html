@@ -1,0 +1,11 @@
+{% extends "base.html"%}
+{% block content %}
+<h2>{{paste}} / edit</h2>
+
+<form action="{{request.path}}" method="post">
+{% csrf_token %}
+{{edit_paste_form.as_p}}
+<input type="submit" value="save">
+</form>
+
+{% endblock content %}

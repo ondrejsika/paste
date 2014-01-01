@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     url(r'^add/$', add_view, name="add", ),
     url(r'^paste/(?P<paste_pk>[-\w\d]+)/$', detail_view, name="detail", ),
     url(r'^paste/raw/(?P<paste_pk>[-\w\d]+)/$', raw_view, name="raw", ),
-
+    url(r'^paste/(?P<paste_pk>[-\w\d]+)/edit/$', edit_view, name="edit", ),
     url(r'^paste/(?P<paste_pk>[-\w\d]+)/delete/$', delete_view, name="delete", ),
     url(r'^paste/(?P<paste_pk>[-\w\d]+)/delete-process/$', delete_process, name="delete_process", ),
 

@@ -35,6 +35,25 @@ def add_view(request, template="paste/add.html"):
         },
         context_instance=RequestContext(request))
 
+@login_required
+def edit_view(request, paste_pk, template="paste/edit.html"):
+    paste = get_object_or_404(Paste, pk=paste_pk)
+    if paste.owner != request.user.profile:
+        return HttpResponseForbidden("403 Forbidden")
+
+    edit_paste_form = PasteForm(request.POST or None, instance=paste)
+    if edit_paste_form.is_valid():
+        edit_paste_form.save()
+        return HttpResponseRedirect(reverse("paste:detail", args=(paste.pk, )))
+
+    return render_to_response(template,
+        {
+            "paste": paste,
+
+            "edit_paste_form": edit_paste_form,
+        },
+        context_instance=RequestContext(request))
+
 
 def detail_view(request, paste_pk, template="paste/detail.html"):
     paste = get_object_or_404(Paste, pk=paste_pk, deleted=False)
