@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class BaseManager(models.Manager):
@@ -16,8 +17,15 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
+class Profile(BaseModel):
+    user = models.OneToOneField(User)
+
+    def __unicode__(self):
+        return u"%s" % self.user
 
 class Paste(BaseModel):
+    owner = models.ForeignKey(Profile, null=True, blank=True)
+
     name = models.CharField(max_length=255, default="", blank=True)
     description = models.TextField(default="", blank=True)
     content = models.TextField()
