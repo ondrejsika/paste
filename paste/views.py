@@ -1,9 +1,11 @@
 import time
 
 from django.shortcuts import render_to_response, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
+
+from django.contrib.auth.decorators import login_required
 
 from .models import Paste
 from .forms import PasteForm
@@ -47,3 +49,25 @@ def raw_view(request, paste_pk):
     paste = get_object_or_404(Paste, pk=paste_pk, deleted=False)
 
     return HttpResponse(paste.content, content_type="text/plain")
+
+@login_required
+def delete_view(request, paste_pk, template="paste/delete.html"):
+    paste = get_object_or_404(Paste, pk=paste_pk)
+    if paste.owner != request.user.profile:
+        return HttpResponseForbidden("403 Forbidden")
+
+    return render_to_response(template,
+    {
+        "paste": paste,
+    },
+    context_instance=RequestContext(request))
+
+@login_required
+def delete_process(request, paste_pk):
+    paste = get_object_or_404(Paste, pk=paste_pk)
+    if paste.owner != request.user.profile:
+        return HttpResponseForbidden("403 Forbidden")
+
+    paste.deleted = True
+    paste.save()
+    return HttpResponseRedirect(request.GET.get("next", "/"))
