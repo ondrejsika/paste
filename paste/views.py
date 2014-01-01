@@ -57,6 +57,11 @@ def edit_view(request, paste_pk, template="paste/edit.html"):
 
 def detail_view(request, paste_pk, template="paste/detail.html"):
     paste = get_object_or_404(Paste, pk=paste_pk, deleted=False)
+    if paste.private:
+        if not request.user.is_authenticated():
+            return HttpResponseForbidden("403 Forbidden")
+        elif paste.owner != request.user.profile:
+            return HttpResponseForbidden("403 Forbidden")
 
     return render_to_response(template,
         {
@@ -66,6 +71,11 @@ def detail_view(request, paste_pk, template="paste/detail.html"):
 
 def raw_view(request, paste_pk):
     paste = get_object_or_404(Paste, pk=paste_pk, deleted=False)
+    if paste.private:
+        if not request.user.is_authenticated():
+            return HttpResponseForbidden("403 Forbidden")
+        elif paste.owner != request.user.profile:
+            return HttpResponseForbidden("403 Forbidden")
 
     return HttpResponse(paste.content, content_type="text/plain")
 

@@ -31,6 +31,7 @@ class Paste(BaseModel):
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
     highlight = models.BooleanField(default=True)
+    private = models.BooleanField()
 
     def __unicode__(self):
         return u"#%s %s" % (self.pk, self.name)

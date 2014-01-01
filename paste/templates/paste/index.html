@@ -11,6 +11,7 @@
         <td>timestamp</td>
     </tr>
     {% for paste in pastes %}
+        {% if not paste.private or paste.owner == request.user.profile %}
         <tr>
             <td><a href="{% url "paste:detail" paste.pk %}">#{{paste.pk}}</a></td>
             <td>
@@ -36,6 +37,7 @@
             </td>
             <td>{{paste.timestamp}}</td>
         </tr>
+        {% endif %}
     {% endfor %}
 </table>
 {% endblock content %}
