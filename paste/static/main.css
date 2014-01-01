@@ -1,0 +1,11 @@
+* {
+  font-family: Arial;
+  margin: 2px;
+}
+
+hr {
+  background-color: black;
+  border: none;
+  height: 1px;
+  margin: 10px 2px;
+}
