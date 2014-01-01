@@ -3,6 +3,9 @@
 <h2>{{paste}}</h2>
 <p>
     {{paste.timestamp}}
+    {% if paste.private %}
+        | private
+    {% endif %}
     {% if paste.owner %}
         | {{paste.owner}}
     {% endif %}

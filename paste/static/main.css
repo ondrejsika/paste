@@ -9,3 +9,7 @@ hr {
   height: 1px;
   margin: 10px 2px;
 }
+
+td {
+  padding-right: 15px;
+}
