@@ -4,6 +4,7 @@
     <tr>
         <td>id</td>
         <td>name</td>
+        <td>owner</td>
         <td>timestamp</td>
     </tr>
     {% for paste in pastes %}
@@ -11,6 +12,11 @@
             <td><a href="{% url "paste:detail" paste.pk %}">#{{paste.pk}}</a></td>
             <td>
                 {{paste.name}}
+            </td>
+            <td>
+                {% if paste.owner %}
+                    {{paste.owner}}
+                {% endif %}
             </td>
             <td>{{paste.timestamp}}</td>
         </tr>

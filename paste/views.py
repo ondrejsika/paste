@@ -21,7 +21,10 @@ def index_view(request, template="paste/index.html"):
 def add_view(request, template="paste/add.html"):
     add_paste_form = PasteForm(request.POST or None)
     if add_paste_form.is_valid():
-        paste = add_paste_form.save()
+        paste = add_paste_form.save(commit=False)
+        if request.user:
+            paste.owner = request.user.profile
+        paste.save()
         return HttpResponseRedirect(reverse("paste:detail", args=(paste.pk, )))
 
     return render_to_response(template,

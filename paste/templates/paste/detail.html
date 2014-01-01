@@ -1,7 +1,12 @@
 {% extends "base.html"%}
 {% block content %}
 <h2>{{paste}}</h2>
-<p>{{paste.timestamp}}</p>
+<p>
+    {{paste.timestamp}}
+    {% if paste.owner %}
+        | {{paste.owner}}
+    {% endif %}
+</p>
 <p><a href="{% url "paste:raw" paste.pk %}" target="_blank">raw</a></p>
 <p>{{paste.description|linebreaksbr}}</p>
 
