@@ -10,7 +10,17 @@
     <body>
         {% block base_content %}
             <h1>Paste</h1>
-            <p><a href="/">list</a> <a href="{% url "paste:add" %}">add</a></p>
+            <p>
+                <a href="/">list</a>
+                <a href="{% url "paste:add" %}">add</a>
+                |
+                {% if request.user.is_authenticated %}
+                    {{request.user.profile}}
+                    <a href="{% url "paste:logout" %}?next=/">logout</a></p>
+                {% else %}
+                    <a href="{% url "paste:login" %}">login</a></p>
+                {% endif %}
+            </p>
             {% block content %}
             {% endblock content %}
         {% endblock base_content %}
