@@ -25,4 +25,4 @@ class Paste(BaseModel):
     highlight = models.BooleanField(default=True)
 
     def __unicode__(self):
-        return u"%s %s" % (self.pk, self.name)
+        return u"#%s %s" % (self.pk, self.name)
