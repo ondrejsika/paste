@@ -6,7 +6,9 @@
 
 <pre><code>{{paste.content}}</code></pre>
 
-<script type="text/javascript">
-hljs.initHighlightingOnLoad()
-</script>
+{% if paste.highlight %}
+    <script type="text/javascript">
+    hljs.initHighlightingOnLoad()
+    </script>
+{% endif %}
 {% endblock content %}
