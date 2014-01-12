@@ -2,7 +2,16 @@
 {% for field in form %}
     <tr>
         <td>{{field.label}}</td>
-        <td>{{field}}</td>
+        <td>
+            {{field}}
+            {% if field.errors %}
+            <p class="red">
+                {% for error in field.errors %}
+                    {{error}}<br>
+                {% endfor %}
+            </p>
+            {% endif %}
+        </td>
     </tr>
 {% endfor %}
 </table>
