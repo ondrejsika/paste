@@ -13,8 +13,8 @@ Documentation
 ### Installation
 
 ```
-git clone git@github.com:ondrejsika/time-keeper.git
-cd time-keeper
+git clone https://github.com/ondrejsika/paste.git
+cd paste
 virtualenv env
 ./env/bin/pip install -r requirements
 ./manage.py syncdb
