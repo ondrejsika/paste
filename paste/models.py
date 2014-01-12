@@ -35,3 +35,8 @@ class Paste(BaseModel):
 
     def __unicode__(self):
         return u"#%s %s" % (self.pk, self.name)
+
+    def save(self, *args, **kwargs):
+        if not self.owner:
+            self.private = False
+        return super(Paste, self).save(*args, **kwargs)
