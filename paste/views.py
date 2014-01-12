@@ -37,6 +37,8 @@ def index_my_view(request, template="paste/index.html"):
 
 def add_view(request, template="paste/add.html"):
     add_paste_form = PasteForm(request.POST or None)
+    if not request.user.is_authenticated():
+        del add_paste_form.fields["private"]
     if add_paste_form.is_valid():
         paste = add_paste_form.save(commit=False)
         if request.user.is_authenticated():
