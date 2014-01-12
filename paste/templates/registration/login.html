@@ -2,7 +2,7 @@
 {% block content %}
 <form action="{{request.path}}" method="post">
 {% csrf_token %}
-{{form.as_p}}
+{% include "paste/form.html" with form=form %}
 <input type="submit" value="login">
 </form>
 {% endblock content %}

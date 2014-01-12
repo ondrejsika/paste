@@ -4,7 +4,7 @@
 
 <form action="{{request.path}}" method="post">
 {% csrf_token %}
-{{add_paste_form.as_p}}
+{% include "paste/form.html" with form=add_paste_form %}
 <input type="submit" value="add">
 </form>
 

@@ -17,3 +17,15 @@ hr {
 td {
   padding-right: 15px;
 }
+
+textarea {
+    min-width: 800px;
+}
+
+#id_description {
+    height: 40px;
+}
+
+#id_content {
+    height: 200px;
+}
