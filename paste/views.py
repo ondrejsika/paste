@@ -23,7 +23,7 @@ def index_view(request, template="paste/index.html"):
         {
             "title": "All pastes",
 
-            "pastes": pastes,
+            "pastes": pastes[:100],
         },
         context_instance=RequestContext(request))
 
@@ -35,7 +35,7 @@ def index_my_view(request, template="paste/index.html"):
         {
             "title": "My pastes",
 
-            "pastes": pastes,
+            "pastes": pastes[:100],
         },
         context_instance=RequestContext(request))
 
