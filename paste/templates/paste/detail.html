@@ -19,11 +19,8 @@
 </p>
 <p>{{paste.description|linebreaksbr}}</p>
 
+<hr>
+
 <pre><code>{{paste.content}}</code></pre>
 
-{% if paste.highlight %}
-    <script type="text/javascript">
-    hljs.initHighlightingOnLoad()
-    </script>
-{% endif %}
 {% endblock content %}
