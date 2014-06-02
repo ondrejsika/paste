@@ -1,6 +1,8 @@
 *.pyc
 *.db
 
+.swp
+
 env/*
 db/*
 static/static/*
