@@ -14,7 +14,9 @@
             <p>
                 <a href="/">all</a>
                 <a href="{% url "paste:index_my" %}">my</a>
-                <a href="{% url "paste:add" %}">add</a>
+                {% if show_add_paste %}
+                    <a href="{% url "paste:add" %}">add</a>
+                {% endif %}
                 |
                 {% if request.user.is_authenticated %}
                     {{request.user.profile}}

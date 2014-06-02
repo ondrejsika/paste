@@ -26,3 +26,14 @@ virtualenv env
 ```
 ./manage.py runserver
 ```
+
+### Settings
+
+#### `ALLOW_ANONYMOUS_PASTES`
+
+* default: `False`
+* options: `True`, `False`
+
+Allow not logged user pastes.
+
+

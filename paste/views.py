@@ -4,12 +4,16 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
+from django.conf import settings
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 
 from .models import Paste
 from .forms import PasteForm
+
+
+ALLOW_ANONYMOUS_PASTES = getattr(settings, 'ALLOW_ANONYMOUS_PASTES', False)
 
 
 def index_view(request, template="paste/index.html"):
@@ -38,6 +42,8 @@ def index_my_view(request, template="paste/index.html"):
 def add_view(request, template="paste/add.html"):
     add_paste_form = PasteForm(request.POST or None)
     if not request.user.is_authenticated():
+        if not ALLOW_ANONYMOUS_PASTES:
+            return HttpResponseForbidden("403 Forbidden")
         del add_paste_form.fields["private"]
     if add_paste_form.is_valid():
         paste = add_paste_form.save(commit=False)
@@ -53,6 +59,7 @@ def add_view(request, template="paste/add.html"):
             "add_paste_form": add_paste_form,
         },
         context_instance=RequestContext(request))
+
 
 @login_required
 def edit_view(request, paste_pk, template="paste/edit.html"):
